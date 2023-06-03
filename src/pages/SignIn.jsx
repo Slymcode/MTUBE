@@ -74,7 +74,7 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -82,7 +82,7 @@ const SignIn = () => {
     try {
       const res = await axios.post("/auth/signin", { name, password });
       dispatch(loginSuccess(res.data));
-      navigate("/")
+      navigate("/");
     } catch (err) {
       dispatch(loginFailure());
     }
@@ -93,15 +93,15 @@ const SignIn = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
         axios
-          .post("/auth/google", {
+          .post("https://mtube-api.onrender.com/api/auth/google", {
             name: result.user.displayName,
             email: result.user.email,
             img: result.user.photoURL,
           })
           .then((res) => {
-            console.log(res)
+            console.log(res);
             dispatch(loginSuccess(res.data));
-            navigate("/")
+            navigate("/");
           });
       })
       .catch((error) => {
@@ -111,12 +111,11 @@ const SignIn = () => {
 
   //TODO: REGISTER FUNCTIONALITY
 
-
   return (
     <Container>
       <Wrapper>
         <Title>Sign in</Title>
-        <SubTitle>to continue to LamaTube</SubTitle>
+        <SubTitle>to continue to MTube</SubTitle>
         <Input
           placeholder="username"
           onChange={(e) => setName(e.target.value)}
