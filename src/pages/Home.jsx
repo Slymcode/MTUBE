@@ -8,12 +8,13 @@ const Container = styled.div`
   flex-wrap: wrap;
 `;
 
+const baseUrl = "https://mtube-api.onrender.com/api";
 const Home = ({ type }) => {
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
     const fetchVideos = async () => {
-      const res = await axios.get(`/videos/${type}`);
+      const res = await axios.get(`${baseUrl}/videos/${type}`);
       setVideos(res.data);
     };
     fetchVideos();
